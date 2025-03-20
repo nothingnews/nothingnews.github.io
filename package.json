@@ -6,9 +6,9 @@
     "build": "nuxt build",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "dev": "nuxt dev",
-    "deploy": "gh-pages -d .nuxt/dist",
     "format": "prettier --write src/",
     "generate": "nuxt generate",
+    "deploy": "gh-pages -d dist",
     "postinstall": "nuxt prepare",
     "preview": "nuxt preview"
   },

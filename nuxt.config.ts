@@ -1,6 +1,10 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  app: {
+    baseURL: '/sapper-game/',
+    buildAssetsDir: 'assets'
+  },
   ssr: false,
   compatibilityDate: '2025-03-18',
   srcDir: './src',

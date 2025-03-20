@@ -10,6 +10,10 @@ lerna-debug.log*
 node_modules
 .DS_Store
 dist
+.github
+.nuxt
+.output
+.vscode
 dist-ssr
 coverage
 *.local

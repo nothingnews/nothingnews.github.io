@@ -17,7 +17,8 @@ type NuxtAppInjections =
   InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prefetch.client.js")> &
   InjectionType<typeof import("../../node_modules/@bootstrap-vue-next/nuxt/dist/runtime/useDirectives.js")> &
   InjectionType<typeof import("../../node_modules/@bootstrap-vue-next/nuxt/dist/runtime/createBootstrap.js")> &
-  InjectionType<typeof import("../../plugins/pinia")>
+  InjectionType<typeof import("../../plugins/pinia")> &
+  InjectionType<typeof import("../../node_modules/nuxt/dist/pages/runtime/plugins/prerender.server.js")>
 
 declare module '#app' {
   interface NuxtApp extends NuxtAppInjections { }
