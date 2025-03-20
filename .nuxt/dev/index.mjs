@@ -10,7 +10,6 @@ import { withQuery, joinURL, withTrailingSlash, parseURL, withoutBase, getQuery,
 import { createHead as createHead$1, propsToString, renderSSRHead } from 'file://D:/Projects/sapper-game/node_modules/unhead/dist/server.mjs';
 import { isVNode, toValue, isRef } from 'file://D:/Projects/sapper-game/node_modules/vue/index.mjs';
 import { walkResolver } from 'file://D:/Projects/sapper-game/node_modules/unhead/dist/utils.mjs';
-import { renderToString } from 'file://D:/Projects/sapper-game/node_modules/vue/server-renderer/index.mjs';
 import { klona } from 'file://D:/Projects/sapper-game/node_modules/klona/dist/index.mjs';
 import defu, { defuFn } from 'file://D:/Projects/sapper-game/node_modules/defu/dist/defu.mjs';
 import { snakeCase } from 'file://D:/Projects/sapper-game/node_modules/scule/dist/index.mjs';
@@ -1461,32 +1460,7 @@ function publicAssetsURL(...path) {
 const APP_ROOT_OPEN_TAG = `<${appRootTag}${propsToString(appRootAttrs)}>`;
 const APP_ROOT_CLOSE_TAG = `</${appRootTag}>`;
 const getClientManifest = () => import('file://D:/Projects/sapper-game/.nuxt/dist/server/client.manifest.mjs').then((r) => r.default || r).then((r) => typeof r === "function" ? r() : r);
-const getServerEntry = () => import('file://D:/Projects/sapper-game/.nuxt/dist/server/server.mjs').then((r) => r.default || r);
 const getSSRStyles = lazyCachedFunction(() => Promise.resolve().then(function () { return styles$1; }).then((r) => r.default || r));
-const getSSRRenderer = lazyCachedFunction(async () => {
-  const manifest = await getClientManifest();
-  if (!manifest) {
-    throw new Error("client.manifest is not available");
-  }
-  const createSSRApp = await getServerEntry();
-  if (!createSSRApp) {
-    throw new Error("Server bundle is not available");
-  }
-  const options = {
-    manifest,
-    renderToString: renderToString$1,
-    buildAssetsURL
-  };
-  const renderer = createRenderer(createSSRApp, options);
-  async function renderToString$1(input, context) {
-    const html = await renderToString(input, context);
-    if (process.env.NUXT_VITE_NODE_OPTIONS) {
-      renderer.rendererContext.updateManifest(await getClientManifest());
-    }
-    return APP_ROOT_OPEN_TAG + html + APP_ROOT_CLOSE_TAG;
-  }
-  return renderer;
-});
 const getSPARenderer = lazyCachedFunction(async () => {
   const manifest = await getClientManifest();
   const spaTemplate = await Promise.resolve().then(function () { return _virtual__spaTemplate; }).then((r) => r.template).catch(() => "").then((r) => {
@@ -1547,7 +1521,7 @@ function renderPayloadJsonScript(opts) {
     "type": "application/json",
     "innerHTML": contents,
     "data-nuxt-data": appId,
-    "data-ssr": !(opts.ssrContext.noSSR)
+    "data-ssr": false
   };
   {
     payload.id = "__NUXT_DATA__";
@@ -1635,7 +1609,7 @@ const renderer = defineRenderHandler(async (event) => {
     url,
     event,
     runtimeConfig: useRuntimeConfig(event),
-    noSSR: event.context.nuxt?.noSSR || routeOptions.ssr === false && !isRenderingIsland || (false),
+    noSSR: true,
     head,
     error: !!ssrError,
     nuxt: void 0,
@@ -1645,7 +1619,7 @@ const renderer = defineRenderHandler(async (event) => {
     modules: /* @__PURE__ */ new Set(),
     islandContext
   };
-  const renderer = ssrContext.noSSR ? await getSPARenderer() : await getSSRRenderer();
+  const renderer = await getSPARenderer() ;
   const _rendered = await renderer.renderToString(ssrContext).catch(async (error) => {
     if (ssrContext._renderResponse && error.message === "skipping render") {
       return {};

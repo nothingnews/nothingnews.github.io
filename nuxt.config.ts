@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  ssr: false,
   compatibilityDate: '2025-03-18',
   srcDir: './src',
   plugins: ['@/../plugins/pinia.ts'],
