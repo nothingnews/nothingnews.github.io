@@ -92,9 +92,6 @@
       "@typed-router": [
         "./typed-router"
       ],
-      "@typed-router/*": [
-        "./typed-router/*"
-      ],
       "#vue-router": [
         "../node_modules/vue-router"
       ],
@@ -105,7 +102,7 @@
         "./imports"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev.json"
+        "./manifest/meta/1db41e56-2476-4b71-bfb5-84f558604de7.json"
       ],
       "#components": [
         "./components"

@@ -113,7 +113,6 @@ declare global {
   const useModel: (typeof import('vue'))['useModel'];
   const useNuxtApp: (typeof import('../../node_modules/nuxt/dist/app/nuxt'))['useNuxtApp'];
   const useNuxtData: (typeof import('../../node_modules/nuxt/dist/app/composables/asyncData'))['useNuxtData'];
-  const useNuxtDevTools: (typeof import('../../node_modules/nuxt/node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools'))['useNuxtDevTools'];
   const usePopoverController: (typeof import('bootstrap-vue-next/composables/usePopoverController'))['usePopoverController'];
   const usePreviewMode: (typeof import('../../node_modules/nuxt/dist/app/composables/preview'))['usePreviewMode'];
   const useRequestEvent: (typeof import('../../node_modules/nuxt/dist/app/composables/ssr'))['useRequestEvent'];
@@ -425,9 +424,6 @@ declare module 'vue' {
     >;
     readonly useNuxtData: UnwrapRef<
       (typeof import('../../node_modules/nuxt/dist/app/composables/asyncData'))['useNuxtData']
-    >;
-    readonly useNuxtDevTools: UnwrapRef<
-      (typeof import('../../node_modules/nuxt/node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools'))['useNuxtDevTools']
     >;
     readonly usePopoverController: UnwrapRef<
       (typeof import('bootstrap-vue-next/composables/usePopoverController'))['usePopoverController']

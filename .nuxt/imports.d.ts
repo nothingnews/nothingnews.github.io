@@ -33,5 +33,4 @@ export { useModalController } from 'bootstrap-vue-next/composables/useModalContr
 export { useScrollspy } from 'bootstrap-vue-next/composables/useScrollspy';
 export { useToastController } from 'bootstrap-vue-next/composables/useToastController';
 export { usePopoverController } from 'bootstrap-vue-next/composables/usePopoverController';
-export { useNuxtDevTools } from '../node_modules/nuxt/node_modules/@nuxt/devtools/dist/runtime/use-nuxt-devtools';
 export { definePageMeta } from '../node_modules/nuxt/dist/pages/runtime/composables';
